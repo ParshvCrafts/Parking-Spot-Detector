@@ -1,0 +1,11 @@
+__pycache__/
+*.pyc
+venv/
+.venv/
+.env*
+!.env.example
+.vscode/
+.idea/
+
+# 221 MB copy of parking_1920_1080.mp4 repeated 18x; detect.py now loops the short clip
+parking_1920_1080_loop.mp4

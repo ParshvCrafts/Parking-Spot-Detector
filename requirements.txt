@@ -1,0 +1,4 @@
+opencv-contrib-python==4.11.0.86
+numpy==1.26.4
+# svm_model.pkl was pickled with this version; retrain (train.py) if you change it
+scikit-learn==1.7.2
