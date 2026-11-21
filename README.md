@@ -35,7 +35,10 @@ The trained model (`svm_model.pkl`) and dataset (`data/`) are included, so detec
 ## Results and limits
 
 - Steps 1 to 3 run end to end; step 1 reproduces the committed `data/` byte for byte.
-- Test accuracy is 1.00, which is optimistic: train and test crops come from the same slots in the same clip, with no held-out slots or footage, so it does not show the model generalises to other lots or lighting.
+- **Accuracy on unseen parking slots: 94.1% ± 4.2%** (5-fold cross-validation grouped by slot, hyperparameters tuned inside each fold). An earlier random image split reported 100%, but each slot gives ~29 near-identical crops, so the same slot sat in both train and test. `train.py` now splits by slot.
+- Misses cluster in about 10 of the 99 labelled slots. The labels were checked by eye and look correct; the hard cases are cars only partly inside the box, empty spots with painted markings or dark pavement, and spots next to bright cars.
+- Tried, same grouped CV: 30x30 pixels 94.8%, HOG 93.3%, HOG + HSV colour stats 96.2%, pixels + edge density 94.6%. None beat the 15x15 baseline by more than the fold-to-fold spread, so the simplest features stay.
+- Still untested: other lots, other lighting, other camera angles. All data comes from one 28 s clip, so treat 94% as an upper bound for new footage. The best next step is labelling more slots or a second clip.
 - Random Forest and CNN classifiers were tried and dropped in favour of the SVM.
 
 ## Project structure
